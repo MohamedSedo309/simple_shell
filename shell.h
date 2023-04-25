@@ -39,7 +39,7 @@ extern char **commands;
 extern char *shell_name;
 extern int status;
 
-/*helpers.c*/
+/*helpers1.c*/
 void print(char *, int);
 char **tokin_maker(char *, char *);
 void remove_newline(char *);
