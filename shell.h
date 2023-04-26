@@ -1,5 +1,5 @@
-#ifndef NEW_SHELL_H
-#define NEW_SHELL_H
+#ifndef SHELL_H
+#define SHELL_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -67,4 +67,4 @@ void exit_shell(char **);
 extern void run_shell_interactively(void);
 extern void initialize_shell(char **current_command, int cmd_type);
 
-#endif /NEW_SHELL_H/
+#endif /SHELL_H/
