@@ -1,11 +1,11 @@
 #include "shell.h"
 
 /**
- *env - prints current environnement
+ *show_environment_variables- prints current environnement
  *@tok_cmd: the entered command
  *Return: void
  */
-void env(char **tok_cmd __attribute__((unused)))
+void show_environment_variables(char **tok_cmd __attribute__((unused)))
 {
 	int i;
 
@@ -17,11 +17,11 @@ void env(char **tok_cmd __attribute__((unused)))
 }
 
 /**
- * quit - exits the shell
+ *exit_shell - exits the shell
  *@tok_cmd: the entered command
- * Return: void
+ *Return: void
  */
-void quit(char **tok_cmd)
+void exit_shell(char **tok_cmd)
 {
 	int nt = 0, arg;
 
