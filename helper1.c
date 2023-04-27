@@ -1,55 +1,40 @@
 #include "shell.h"
 
 /**
- * tokin_maker - tokenizes input then stores it into an array
- *@_input: input to be parsed
- *@delim: delimiter to be used, needs to be one character string
+ * tokenize_string - tokenizes input then stores it into an array
+ *@input_string: input to be parsed
+ *@done: one character string
  *
  *Return: tokens array
  */
 
-char **tokin_maker(char *_input, char *delim)
+char **tokenize_string(char *input_string, char *done)
 {
-int num_delim = 0;
-char **av = NULL;
-char *token = NULL;
-char *save_ptr = NULL;
-token = _strtok_r(_input, delim, &save_ptr);
-while (token != NULL)
+int num_done = 0;
+char **now = NULL;
+char *tk = NULL;
+char *pointer_s = NULL;
+tk = tokenize_string_r(input_string, done, &pointer_s);
+while (tk != NULL)
 {
-av = _realloc(av, sizeof(*av) * num_delim, sizeof(*av) * (num_delim + 1));
-av[num_delim] = token;
-token = _strtok_r(NULL, delim, &save_ptr);
-num_delim++;
+noww = reallocate_memory(noww, sizeof(*noww) * num_done, sizeof(*noww) * (num_done + 1));
+noww[num_done] = tk;
+tk = tokenize_string_r(NULL, done, &pointer_s);
+num_done++;
 }
-av = _realloc(av, sizeof(*av) * num_delim, sizeof(*av) * (num_delim + 1));
-av[num_delim] = NULL;
-return (av);
-}
-
-/**
- *print - prints a string to standerd output
- *@str: string to print
- *@stream: stream to print out to (stdout)
- *
- *Return: void
- */
-void print(char *str, int stream)
-{
-int i;
-for (i = 0; str[i] != '\0'; i++)
-{
-write(stream, &str[i], 1);
-}
+noww = reallocate_memory(noww, sizeof(*noww) * num_done, sizeof(*noww) * (num_done + 1));
+noww[num_done] = NULL;
+return (noww);
 }
 
+
 /**
- *remove_newline - remove new line from a string
+ *remove_newline_character - remove new line from a string
  *@str: string to be used
  *Return: void
  */
 
-void remove_newline(char *str)
+void remove_newline_character(char *str)
 {
 int i = 0;
 while (str[i] != '\0')
@@ -64,14 +49,14 @@ str[i] = '\0';
 }
 
 /**
- *_strcpy - copy a string
+ *copy_string - copy a string
  *@src: string to copy
  *@dest: destination to copy to
  *
  * Return: void
  */
 
-void _strcpy(char *src, char *dest)
+void copy_string(char *src, char *dest)
 {
 int i = 0;
 for (i = 0; src[i] != '\0'; i++)
@@ -82,12 +67,12 @@ dest[i] = '\0';
 }
 
 /**
- *_strlen - get string length
+ *get_string_length - get string length
  *@str: string
  * Return: string lenth
  */
 
-int _strlen(char *str)
+int get_string_length(char *str)
 {
 int len = 0;
 if (str == NULL)
@@ -98,4 +83,21 @@ for (len = 0; str[len] != '\0'; len++)
 {
 }
 return (len);
+}
+
+
+/**
+ *print_message - prints a string to standerd output
+ *@string: string to print
+ *@stream: stream to print out to (stdout)
+ *
+ *Return: void
+ */
+void print_message(char *string, int stream)
+{
+int i = 0;
+for (i = 0; string[i] != '\0'; i++)
+{
+write(stream, &string[i], 1);
+}
 }
