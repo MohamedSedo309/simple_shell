@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+ *tokenize_string_r - tokenizes a string
+ *@string: string to tokenize
+ *@done: delimiter to use in tokenizing the string
+ *@save_pointerr: pointer to track the string
+ *of the next token
+ *Return: The next available token
+ */
 char *tokenize_string_r(char *string, char *done, char **save_pointerr)
 {
 	char *end;
@@ -32,6 +40,11 @@ char *tokenize_string_r(char *string, char *done, char **save_pointerr)
 	return (string);
 }
 
+/**
+ *convert_string_to_integer - convert string to int
+ *@s: the string to convert
+ *Return: the converted int
+ */
 int convert_string_to_integer(char *s)
 {
 	unsigned int n = 0;
@@ -49,6 +62,14 @@ int convert_string_to_integer(char *s)
 	return (n);
 }
 
+/**
+ *reallocate_memory - reallocate a memory block
+ *@pointerr: pointer to the memory previously
+ *allocated with a call to malloc
+ *@os: size of ptr (old)
+ *@ns: size of the new memory
+ *Return: pointer to the address of the new memory block
+ */
 void *reallocate_memory(void *pointerr, unsigned int os, unsigned int ns)
 {
 	void *tb;
@@ -82,12 +103,23 @@ void *reallocate_memory(void *pointerr, unsigned int os, unsigned int ns)
 	}
 }
 
+/**
+ *ctrl_c_signal_handler - handles the CTRL-C key
+ *@signum: signal number
+ *Return: void
+ */
 void ctrl_c_signal_handler(int sgn)
 {
 	if (sgn == SIGINT)
 		print("\n($) ", STDIN_FILENO);
 }
 
+/**
+ *remove_comments - ignore everything after a '#'
+ *@innn: input to be used
+ *
+ *Return: void
+ */
 void remove_comments(char *innn)
 {
 	int i = 0;
@@ -102,4 +134,3 @@ void remove_comments(char *innn)
 	}
 	innn[i] = '\0';
 }
-
