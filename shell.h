@@ -50,8 +50,8 @@ void ctrl_c_signal_handler(int);
 void remove_comments(char *);
 
 
-int parse_input_command(char *);
-void execute_input_command(char **, int);
+int parse_command(char *);
+void execute_command(char **, int);
 char *find_command_in_path(char *);
 void (*get_command_function(char *))(char **);
 char *get_environment_variable(char *);
