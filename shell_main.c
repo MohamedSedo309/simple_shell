@@ -1,8 +1,17 @@
 #include "shell.h"
-	char **input_commands = NULL;
-	char *input_line = NULL;
-	char *shell_name = NULL;
-	int status = 0;
+char **input_commands = NULL;
+char *input_line = NULL;
+char *shell_name = NULL;
+int status = 0;
+
+/**
+ *main - the main shell code
+ *@argc: number of args
+ *@arnn: the arguments
+ *uses the helpers and util
+ *Prints error on Failure
+ *Return: 0 on success
+ */
 int main(int argc __attribute__((unused)), char **arnn)
 {
 	char **current_command = NULL;
@@ -42,5 +51,3 @@ int main(int argc __attribute__((unused)), char **arnn)
 
 	return (status);
 }
-
-	
