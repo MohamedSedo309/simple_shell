@@ -17,12 +17,14 @@ char *pointer_s = NULL;
 tk = tokenize_string_r(input_string, done, &pointer_s);
 while (tk != NULL)
 {
-noww = reallocate_memory(noww, sizeof(*noww) * num_done, sizeof(*noww) * (num_done + 1));
+noww = reallocate_memory(noww, sizeof(*noww) * num_done,
+			 sizeof(*noww) * (num_done + 1));
 noww[num_done] = tk;
 tk = tokenize_string_r(NULL, done, &pointer_s);
 num_done++;
 }
-noww = reallocate_memory(noww, sizeof(*noww) * num_done, sizeof(*noww) * (num_done + 1));
+noww = reallocate_memory(noww, sizeof(*noww) * num_done,
+			 sizeof(*noww) * (num_done + 1));
 noww[num_done] = NULL;
 return (noww);
 }
