@@ -18,7 +18,7 @@ int main(int argc __attribute__((unused)), char **arnn)
 	int i, type_command = 0;
 	size_t n = 0;
 
-	signal(SIGINT, ctrl_c_handler);
+	signal(SIGINT, ctrl_c_signal_handler);
 	shell_name = arnn[0];
 	while (1)
 	{

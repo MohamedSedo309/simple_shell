@@ -64,4 +64,4 @@ void exit_shell(char **);
 extern void run_shell_interactively(void);
 extern void initialize_shell(char **current_command, int cmd_type);
 
-#endif /SHELL_H/
+#endif /*SHELL_H*/

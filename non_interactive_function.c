@@ -16,10 +16,10 @@ void run_shell_interactively(void)
 		{
 			remove_newline_character(input_line);
 			remove_comments(input_line);
-			input_commands = tokenizer(input_line, ";");
+			input_commands = tokenize_string(input_line, ";");
 			for (i = 0; input_commands[i] != NULL; i++)
 			{
-				curcmd = tokenizer(input_commands[i], " ");
+				curcmd = tokenize_string(input_commands[i], " ");
 				if (curcmd[0] == NULL)
 				{
 					free(curcmd);
