@@ -92,7 +92,7 @@ void *reallocate_memory(void *pointerr, unsigned int os, unsigned int ns)
 		tb = malloc(ns);
 		if (tb != NULL)
 		{
-			for (i = 0; i < min(os, ns); i++)
+			for (i = 0; i < new_min(os, ns); i++)
 				*((char *)tb + i) = *((char *)pointerr + i);
 			free(pointerr);
 			return (tb);
