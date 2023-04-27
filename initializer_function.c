@@ -14,7 +14,7 @@ void initialize_shell(char **curcmd, int cmdtyp)
 	{
 		mypid = fork();
 		if (mypid == 0)
-			execute_input_command(curcmd, cmdtyp);
+			execute_command(curcmd, cmdtyp);
 		else
 		{
 			waitpid(mypid, &status, 0);
@@ -22,5 +22,5 @@ void initialize_shell(char **curcmd, int cmdtyp)
 		}
 	}
 	else
-		execute_input_command(curcmd, cmdtyp);
+		execute_command(curcmd, cmdtyp);
 }
