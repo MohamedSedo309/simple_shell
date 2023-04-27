@@ -1,12 +1,5 @@
 #include "shell.h"
 
-/**
- *tokenize_string - tokenizes input then stores it into an array
- *@input_string: input to be parsed
- *@done: one character string
- *
- *Return: tokens array
- */
 
 char **tokenize_string(char *input_string, char *done)
 {
@@ -29,11 +22,6 @@ noww[num_done] = NULL;
 return (noww);
 }
 
-/**
- *remove_newline_character - remove new line from a string
- *@str: string to be used
- *Return: void
- */
 
 void remove_newline_character(char *str)
 {
@@ -49,13 +37,6 @@ i++;
 str[i] = '\0';
 }
 
-/**
- *print_message - prints a string to standerd output
- *@string: string to print
- *@stream: stream to print out to (stdout)
- *
- *Return: void
- */
 void print_message(char *string, int stream)
 {
 int i = 0;
@@ -66,13 +47,6 @@ write(stream, &string[i], 1);
 }
 
 
-/**
- *copy_string - copy a string
- *@src: string to copy
- *@dest: destination to copy to
- *
- * Return: void
- */
 
 void copy_string(char *src, char *dest)
 {
@@ -85,11 +59,7 @@ dest[i] = '\0';
 }
 
 
-/**
- *get_string_length - get string length
- *@str: string
- * Return: string lenth
- */
+
 
 int get_string_length(char *str)
 {
