@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ *compare_strings- compare two strings
+ *@str: first string
+ *@dest: second string to compare with
+ *Return: difference of the two strings
+ */
+
 int compare_strings(char *str, char *dest)
 {
 	int i = 0;
@@ -12,6 +19,14 @@ int compare_strings(char *str, char *dest)
 	}
 	return (str[i] - dest[i]);
 }
+
+/**
+ *concatenate_strings- concatenates two strings
+ *@dest: string to be concatenated to
+ *@src:  string to concatenate
+ * Return: pointer to new string
+ */
+
 char *concatenate_strings(char *dest, char *src)
 {
 	char *new_string =  NULL;
@@ -27,6 +42,14 @@ char *concatenate_strings(char *dest, char *src)
 
 
 
+/**
+ *get_not_matching_prefix_length - get_not_matching_prefix_length
+ *@str1: string to be searched
+ *@str2: string to search for
+ *
+ *Return: index
+ */
+
 
 int get_not_matching_prefix_length(char *str1, char *str2)
 {
@@ -41,7 +64,12 @@ int get_not_matching_prefix_length(char *str1, char *str2)
 	return (len);
 }
 
-
+/**
+ *get_prefix_length - gets the length of a prefix substring
+ *@str1: string to be searched
+ *@str2: string to search for
+ *Return: number of bytes matched
+ */
 int get_prefix_length(char *str1, char *str2)
 {
 	int i = 0;
@@ -57,6 +85,13 @@ int get_prefix_length(char *str1, char *str2)
 	return (match);
 }
 
+/**
+ *find_char - locates a char in a string
+ *@s: string to be searched
+ *@c: char to be checked
+ *
+ *Return: pointer to found char
+ */
 
 char *find_char(char *s, char c)
 {
