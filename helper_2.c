@@ -111,7 +111,7 @@ void *reallocate_memory(void *pointerr, unsigned int os, unsigned int ns)
 void ctrl_c_signal_handler(int sgn)
 {
 	if (sgn == SIGINT)
-		print("\n($) ", STDIN_FILENO);
+		print_message("\n($) ", STDIN_FILENO);
 }
 
 /**

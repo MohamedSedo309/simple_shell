@@ -1,105 +1,106 @@
 #include "shell.h"
 
 /**
- * tokenize_string - tokenizes input then stores it into an array
- *@input_string: input to be parsed
- *@done: one character string
+ *compare_strings- compare two strings
+ *@str: first string
+ *@dest: second string to compare with
+ *Return: difference of the two strings
+ */
+
+int compare_strings(char *str, char *dest)
+{
+	int i = 0;
+
+	while (str[i] != '\0')
+	{
+		if (str[i] != dest[i])
+			break;
+		i++;
+	}
+	return (str[i] - dest[i]);
+}
+
+/**
+ *concatenate_strings- concatenates two strings
+ *@dest: string to be concatenated to
+ *@src:  string to concatenate
+ * Return: pointer to new string
+ */
+
+char *concatenate_strings(char *dest, char *src)
+{
+	char *new_string =  NULL;
+	int len_dest = get_string_length(dest);
+	int len_source = get_string_length(src);
+
+	new_string = malloc(sizeof(*new_string) * (len_dest + len_source + 1));
+	copy_string(dest, new_string);
+	copy_string(src, new_string + len_dest);
+	new_string[len_dest + len_source] = '\0';
+	return (new_string);
+}
+
+
+
+/**
+ *get_not_matching_prefix_length - get_not_matching_prefix_length
+ *@str1: string to be searched
+ *@str2: string to search for
  *
- *Return: tokens array
+ *Return: index
  */
 
-char **tokenize_string(char *input_string, char *done)
-{
-int num_done = 0;
-char **now = NULL;
-char *tk = NULL;
-char *pointer_s = NULL;
-tk = tokenize_string_r(input_string, done, &pointer_s);
-while (tk != NULL)
-{
-noww = reallocate_memory(noww, sizeof(*noww) * num_done,
-			 sizeof(*noww) * (num_done + 1));
-noww[num_done] = tk;
-tk = tokenize_string_r(NULL, done, &pointer_s);
-num_done++;
-}
-noww = reallocate_memory(noww, sizeof(*noww) * num_done,
-			 sizeof(*noww) * (num_done + 1));
-noww[num_done] = NULL;
-return (noww);
-}
 
+int get_not_matching_prefix_length(char *str1, char *str2)
+{
+	int len = 0, i;
 
-/**
- *remove_newline_character - remove new line from a string
- *@str: string to be used
- *Return: void
- */
-
-void remove_newline_character(char *str)
-{
-int i = 0;
-while (str[i] != '\0')
-{
-if (str[i] == '\n')
-{
-break;
-}
-i++;
-}
-str[i] = '\0';
+	for (i = 0; str1[i] != '\0'; i++)
+	{
+		if (find_char(str2, str1[i]) != NULL)
+			break;
+		len++;
+	}
+	return (len);
 }
 
 /**
- *copy_string - copy a string
- *@src: string to copy
- *@dest: destination to copy to
+ *get_prefix_length - gets the length of a prefix substring
+ *@str1: string to be searched
+ *@str2: string to search for
+ *Return: number of bytes matched
+ */
+int get_prefix_length(char *str1, char *str2)
+{
+	int i = 0;
+	int match = 0;
+
+	while (str1[i] != '\0')
+	{
+		if (find_char(str2, str1[i]) == NULL)
+			break;
+		match++;
+		i++;
+	}
+	return (match);
+}
+
+/**
+ *find_char - locates a char in a string
+ *@s: string to be searched
+ *@c: char to be checked
  *
- * Return: void
+ *Return: pointer to found char
  */
 
-void copy_string(char *src, char *dest)
+char *find_char(char *s, char c)
 {
-int i = 0;
-for (i = 0; src[i] != '\0'; i++)
-{
-dest[i] = src[i];
-}
-dest[i] = '\0';
-}
+	int i = 0;
 
-/**
- *get_string_length - get string length
- *@str: string
- * Return: string lenth
- */
-
-int get_string_length(char *str)
-{
-int len = 0;
-if (str == NULL)
-{
-return (len);
-}
-for (len = 0; str[len] != '\0'; len++)
-{
-}
-return (len);
-}
-
-
-/**
- *print_message - prints a string to standerd output
- *@string: string to print
- *@stream: stream to print out to (stdout)
- *
- *Return: void
- */
-void print_message(char *string, int stream)
-{
-int i = 0;
-for (i = 0; string[i] != '\0'; i++)
-{
-write(stream, &string[i], 1);
-}
+	for (; s[i] != c && s[i] != '\0'; i++)
+		;
+	if (s[i] == c)
+		return (s + i);
+	else
+		return (NULL);
 }
