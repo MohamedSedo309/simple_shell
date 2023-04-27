@@ -1,4 +1,9 @@
 #include "shell.h"
+
+/**
+ *run_shell_interactively - run shell interactively
+ *Return: void
+ */
 void run_shell_interactively(void)
 {
 	char **curcmd = NULL;
