@@ -41,7 +41,7 @@ int main(int argc __attribute__((unused)), char **arnn)
 				free(current_command);
 				break;
 			}
-			type_command = parse_input_command(current_command[0]);
+			type_command = parse_command(current_command[0]);
 			initialize_shell(current_command, type_command);
 			free(current_command);
 		}
