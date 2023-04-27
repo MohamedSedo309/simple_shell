@@ -11,7 +11,7 @@
 char **tokenize_string(char *input_string, char *done)
 {
 int num_done = 0;
-char **now = NULL;
+char **noww = NULL;
 char *tk = NULL;
 char *pointer_s = NULL;
 tk = tokenize_string_r(input_string, done, &pointer_s);
