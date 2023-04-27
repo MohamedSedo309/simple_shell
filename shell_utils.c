@@ -131,12 +131,12 @@ void (*get_command_function(char *command))(char **)
 {
 	int i;
 	cmd_map_t mapping[] = {
-		{"env", get_environment_variable}, {"exit", exit_shell}
+		{"env", show_environment_variables}, {"exit", exit_shell}
 	};
 
 	for (i = 0; i < 2; i++)
 	{
-		if (compare_strings(command, mapping[i].command_name) == 0)
+		if (compare_strings(command, mapping[i].cmd_name) == 0)
 			return (mapping[i].func);
 	}
 	return (NULL);
@@ -153,7 +153,7 @@ char *get_environment_variable(char *cu_env)
 	char *pair_ptr;
 	char *name_cpy;
 
-	for (my_environ = _environ; *my_environ != NULL; my_environ++)
+	for (my_environ = environment; *my_environ != NULL; my_environ++)
 	{
 		for (pair_ptr = *my_environ, name_cpy = cu_env;
 		     *pair_ptr == *name_cpy; pair_ptr++, name_cpy++)
