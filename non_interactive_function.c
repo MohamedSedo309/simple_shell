@@ -25,7 +25,7 @@ void run_shell_interactively(void)
 					free(curcmd);
 					break;
 				}
-				cmdtyp = parse_input_command(curcmd[0]);
+				cmdtyp = parse_command(curcmd[0]);
 				initialize_shell(curcmd, cmdtyp);
 				free(curcmd);
 			}
