@@ -36,7 +36,7 @@ void exit_shell(char **tok_cmd)
 	}
 	else if (nt == 2)
 	{
-		arg = _atoi(tok_cmd[1]);
+		arg = convert_string_to_integer(tok_cmd[1]);
 		if (arg == -1)
 		{
 			print_message(shell_name, STDERR_FILENO);
