@@ -30,7 +30,6 @@
 #define HIST_FILE	".simple_shell_history"
 #define HIST_MAX	4096
 
-#define PATH /bin
 
 extern char **environ;
 
