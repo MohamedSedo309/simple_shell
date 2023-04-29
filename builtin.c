@@ -9,7 +9,7 @@ int exit_shell(infooo *info)
 {
 	int exitcheck;
 
-	if (info->argv[1]) /* If there is an exit arguement */
+	if (info->argv[1])
 	{
 		exitcheck = err_convert_str_to_int(info->argv[1]);
 		if (exitcheck == -1)
