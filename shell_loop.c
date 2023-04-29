@@ -77,6 +77,48 @@ int get_builtin(infooo *info)
 
 
 /**
+ *find_cmmd - finds a command
+ *@info: infoooo struct
+ *Return: void
+ */
+void find_cmmd(infooo *info)
+{
+	char *path = NULL;
+	int i, k;
+
+	info->path = info->argv[0];
+	if (info->conutline_flag == 1)
+	{
+		info->count_line++;
+		info->conutline_flag = 0;
+	}
+	for (i = 0, k = 0; info->arg[i]; i++)
+		if (!is_delimeter(info->arg[i], " \t\n"))
+			k++;
+	if (!k)
+		return;
+
+	path = get_path(info, get_enviroment(info, "PATH="), info->argv[0]);
+	if (path)
+	{
+		info->path = path;
+		fork_cmmd(info);
+	}
+	else
+	{
+		if ((is_interactive(info) || get_enviroment(info, "PATH=")
+					|| info->argv[0][0] == '/') && is_a_cmd(info, info->argv[0]))
+			fork_cmmd(info);
+		else if (*(info->arg) != '\n')
+		{
+			info->status = 127;
+			print_e_message(info, "not found\n");
+		}
+	}
+}
+
+
+/**
  *fork_cmmd - fork an exec thread to run cmmd
  *@info: infoooo struct
  *Return: void
@@ -111,49 +153,6 @@ void fork_cmmd(infooo *info)
 			info->status = WEXITSTATUS(info->status);
 			if (info->status == 126)
 				print_e_message(info, "Permission denied\n");
-		}
-	}
-}
-
-
-
-/**
- *find_cmmd - finds a command
- *@info: infoooo struct
- *Return: void
- */
-void find_cmmd(infooo *info)
-{
-	char *path = NULL;
-	int i, k;
-
-	info->path = info->argv[0];
-	if (info->conutline_flag == 1)
-	{
-		info->count_line++;
-		info->conutline_flag = 0;
-	}
-	for (i = 0, k = 0; info->arg[i]; i++)
-		if (!is_delimeter(info->arg[i], " \t\n"))
-			k++;
-	if (!k)
-		return;
-
-	path = get_path(info, get_enviroment(info, "PATH=/bin"), info->argv[0]);
-	if (path)
-	{
-		info->path = path;
-		fork_cmmd(info);
-	}
-	else
-	{
-		if ((is_interactive(info) || get_enviroment(info, "PATH=/bin")
-					|| info->argv[0][0] == '/') && is_a_cmd(info, info->argv[0]))
-			fork_cmmd(info);
-		else if (*(info->arg) != '\n')
-		{
-			info->status = 127;
-			print_e_message(info, "not found\n");
 		}
 	}
 }
