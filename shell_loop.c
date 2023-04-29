@@ -1,5 +1,5 @@
 #include "shell.h"
-
+export PATH=$PATH:/bin:/usr/bin
 /**
  *hsh - main shell loop
  *@info: infooo struct
@@ -139,7 +139,7 @@ void find_cmmd(infooo *info)
 	if (!k)
 		return;
 
-	path = get_path(info, get_enviroment(info, "PATH=$PATH:/bin"), info->argv[0]);
+	path = get_path(info, get_enviroment(info, "PATH="), info->argv[0]);
 	if (path)
 	{
 		info->path = path;
@@ -147,7 +147,7 @@ void find_cmmd(infooo *info)
 	}
 	else
 	{
-		if ((is_interactive(info) || get_enviroment(info, "PATH=$PATH:/bin")
+		if ((is_interactive(info) || get_enviroment(info, "PATH=")
 					|| info->argv[0][0] == '/') && is_a_cmd(info, info->argv[0]))
 			fork_cmmd(info);
 		else if (*(info->arg) != '\n')
