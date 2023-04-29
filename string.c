@@ -5,14 +5,14 @@
  *@str: the string
  *Return: length
  */
-int get_string_length(char *str)
+int get_string_length(char *s)
 {
 	int i = 0;
 
-	if (!str)
+	if (!s)
 		return (0);
 
-	while (*str++)
+	while (*s++)
 		i++;
 	return (i);
 }
@@ -39,6 +39,20 @@ int compare_strings(char *s1, char *s2)
 }
 
 /**
+ *begain_with - checks if string start with
+ *@search: string to search
+ *@sub:substring to find
+ *Return: address of next char of haystack or NULL
+ */
+char *begain_with(const char *haystack, const char *needle)
+{
+	while (*needle)
+		if (*needle++ != *haystack++)
+			return (NULL);
+	return ((char *)haystack);
+}
+
+/**
  *concatenate_strings - concatenates two strings
  *@dest: destination
  *@src: source
@@ -54,18 +68,4 @@ char *concatenate_strings(char *dest, char *src)
 		*dest++ = *src++;
 	*dest = *src;
 	return (ret);
-}
-
-/**
- *begain_with - checks if string start with
- *@search: string to search
- *@sub:substring to find
- *Return: address of next char of haystack or NULL
- */
-char *begain_with(const char *search, const char *sub)
-{
-	while (*search)
-		if (*search++ != *sub++)
-			return (NULL);
-	return ((char *)sub);
 }

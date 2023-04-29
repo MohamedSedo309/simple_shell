@@ -6,7 +6,6 @@
  *@av: args
  *Return: 0 on success or 1 on error or error code
  */
-
 int hsh(infooo *info, char **av)
 {
 	ssize_t r = 0;
@@ -76,11 +75,11 @@ int get_builtin(infooo *info)
 	return (built_in_ret);
 }
 
-
 /**
- *fork_cmmd - fork an exec thread to run cmmd
- *@info: infoooo struct
- *Return: void
+ * find_cmmd - finds a command in PATH
+ * @info: infooo parameter
+ *
+ * Return: void
  */
 void find_cmmd(infooo *info)
 {
@@ -114,6 +113,45 @@ void find_cmmd(infooo *info)
 		{
 			info->status = 127;
 			print_e_message(info, "not found\n");
+		}
+	}
+}
+
+/**
+ *fork_cmmd - fork an exec thread to run cmmd
+ *@info: infoooo struct
+ *Return: void
+ */
+void fork_cmmd(infooo *info)
+{
+	pid_t child_pid;
+
+	child_pid = fork();
+	if (child_pid == -1)
+	{
+		/* TODO: PUT ERROR FUNCTION */
+		perror("Error:");
+		return;
+	}
+	if (child_pid == 0)
+	{
+		if (execve(info->path, info->argv, copy_env_string(info)) == -1)
+		{
+			delete_info_all(info, 1);
+			if (errno == EACCES)
+				exit(126);
+			exit(1);
+		}
+		/* TODO: PUT ERROR FUNCTION */
+	}
+	else
+	{
+		wait(&(info->status));
+		if (WIFEXITED(info->status))
+		{
+			info->status = WEXITSTATUS(info->status);
+			if (info->status == 126)
+				print_e_message(info, "Permission denied\n");
 		}
 	}
 }
