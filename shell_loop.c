@@ -1,5 +1,5 @@
 #include "shell.h"
-export PATH=$PATH:/bin:/usr/bin
+
 /**
  *hsh - main shell loop
  *@info: infooo struct
