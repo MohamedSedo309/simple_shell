@@ -64,8 +64,8 @@ char *concatenate_strings(char *dest, char *src)
  */
 char *begain_with(const char *search, const char *sub)
 {
-	while (*needle)
-		if (*needle++ != *sub++)
+	while (*search)
+		if (*search++ != *sub++)
 			return (NULL);
 	return ((char *)sub);
 }

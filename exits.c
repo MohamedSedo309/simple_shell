@@ -36,7 +36,7 @@ char *copy_string2(char *dest, char *src, int n)
  *@c: char
  *Return: memory pointer
  */
-char *find_char(char *s, char c)
+char *find_char(char *str, char c)
 {
 	do {
 		if (*str == c)
